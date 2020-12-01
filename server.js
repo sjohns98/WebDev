@@ -9,7 +9,6 @@ const http = require("http");
 const MongoClient = require('mongodb').MongoClient  
 const httpServer = http.createServer(app);
 const multer = require("multer");
-var port_number = app.listen(process.env.PORT || 3000);
 
 var uri = 'mongodb+srv://studentUser:iamstudent@cluster0.y9n1j.mongodb.net/movieDB?retryWrites=true&w=majority';
 var session = require('express-session');
