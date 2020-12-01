@@ -9,6 +9,7 @@ const http = require("http");
 const MongoClient = require('mongodb').MongoClient  
 const httpServer = http.createServer(app);
 const multer = require("multer");
+var port_number = app.listen(process.env.PORT || 3000);
 
 var uri = 'mongodb+srv://studentUser:iamstudent@cluster0.y9n1j.mongodb.net/movieDB?retryWrites=true&w=majority';
 var session = require('express-session');
@@ -33,7 +34,7 @@ MongoClient.connect(uri, (err, database) => { // Connecting to our database usin
 const client = new MongoClient(uri, { useNewUrlParser: true }); // Starting the server on localhost:3000 so it can process requests
 client.connect((err, database) => {
 db = database.db("MovieDB") // We only want to pull from our "MovieDB" database, so we define a db value when the server is booted
-app.listen(3000, function() {
+app.listen(port_number, function() {
   console.log('listening on 3000')
 })
 })
