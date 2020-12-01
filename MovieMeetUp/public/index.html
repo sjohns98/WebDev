@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link rel='icon' type='image/png' href='../images/popcorn-favicon-icons8-small.png'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/splash.css">
+
+    <!-- Google signin -->
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script>
+        var googleUser = {};
+        var startApp = function() {
+            gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                    client_id: '855139029304-hgunpca7m99mplic1fa5i1b8chom2le2.apps.googleusercontent.com',
+                    cookiepolicy: 'single_host_origin'
+                });
+                attachSignin(document.getElementById('my-signin2'));
+            })
+        }
+        function attachSignin(element) {
+            console.log(element.id);
+            auth2.attachClickHandler(element, {},
+                function(googleUser) {
+                    var profile = googleUser.getBasicProfile()
+                    console.log('Logged in as: ' + profile.getName());
+                    document.getElementById('id').value = profile.getId();
+                    document.getElementById('fname').value = profile.getGivenName();
+                    document.getElementById('lname').value = profile.getFamilyName();
+                    document.getElementById('imgUrl').value = profile.getImageUrl();
+                    document.getElementById('email').value = profile.getEmail();
+                    document.getElementById('googleInfo').submit();
+                }, function(error) {
+                    console.log(error);
+                });
+        }
+    </script>
+    <title>Movie Meetup</title>
+</head>
+
+<body>
+    <header>
+        <!-- Image and text -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <nav class="navbar navbar-light">
+                        <a class="navbar-brand" href="#">
+                            <img class="brand" src="images/splash_logo.svg" class="d-inline-block align-top" alt="">
+                        </a>
+                    </nav>
+                    <section class="text-white">
+                        <h1 class="header__title">Quarantine killed your movie plans?</h1>
+                        <p class="header__subtitle">
+                            You're stuck at home but that doesn't mean you have to cancel movie night—</br>
+                            Pick your favorite genres and we'll connect you with a new friend with similar taste.</br>
+                            Discuss your favorite movies, discover new gems, and plan a socially-distant watch party!</br>
+                            Movie night isn't cancelled just because the theaters are closed.</br></br>
+                            <h2>Meet you on a streaming service soon!</h2>
+                        </p>
+                        <!--<a class="signin text-white btn btn-lg btn-danger mt-2" href="profiler/signup.html">Sign Up</a>
+                        <a class="signin text-white btn btn-lg btn-danger mt-2" href="./login.html">Sign In</a>-->
+                        <!-- Google signin button -->
+                        <div id="my-signin2" class="signin text-white btn btn-lg btn-danger mt-2"><span class="buttonText">Sign in with Google</span></div>
+                        <script>startApp();</script>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Hidden form for submitting user's google info -->
+    <form id="googleInfo" method="POST" action="/profiler/profilerProc.html">
+        <input type="hidden" id="id" name="id">
+        <input type="hidden" id="fname" name="firstname">
+        <input type="hidden" id="lname" name="lastname">
+        <input type="hidden" id="imgUrl" name="profilepic">
+        <input type="hidden" id="email" name="email">
+    </form>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="./assets/javascript/app.js"></script>
+</body>
+
+</html>
