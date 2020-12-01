@@ -34,9 +34,9 @@ MongoClient.connect(uri, (err, database) => { // Connecting to our database usin
 const client = new MongoClient(uri, { useNewUrlParser: true }); // Starting the server on localhost:3000 so it can process requests
 client.connect((err, database) => {
 db = database.db("MovieDB") // We only want to pull from our "MovieDB" database, so we define a db value when the server is booted
-app.listen(port_number, function() {
-  console.log('listening on 3000')
-})
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 })
 
 
